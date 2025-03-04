@@ -65,13 +65,12 @@ impl Builder {
     }
 
     /// Create a new driver using SPI interface
-    pub fn new_gyro_spi<SPI, CSN, CommE, PinE>(
+    pub fn new_gyro_spi<SPI, CommE>(
         spi: SPI,
     ) -> Gyroscope<SpiInterface<SPI>>
     where
         SPI: hal::spi::SpiDevice<u8, Error = CommE>,
         CommE: core::fmt::Debug,
-        PinE: core::fmt::Debug,
     {
         let iface = interface::SpiInterface::new(spi, false);
         Gyroscope::new_with_interface(iface)
