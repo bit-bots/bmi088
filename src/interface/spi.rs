@@ -26,7 +26,7 @@ where
     }
 
     fn transfer_block(&mut self, block: &mut [u8]) -> Result<(), Error<CommE, SPI::Error>> {
-        self.spi.write(&block).map_err(Error::Comm)
+        self.spi.transfer_in_place(block).map_err(Error::Comm)
     }
 }
 
